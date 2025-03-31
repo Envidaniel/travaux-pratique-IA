@@ -1,20 +1,18 @@
 from flask import Flask, render_template, request
-import joblib
 import numpy as np
+import joblib
 
-# Initialiser Flask
 app = Flask(__name__)
 
-# Charger le modèle entraîné
-model = joblib.load('model_heart_disease.pkl')
+# Charger le modèle
+model = joblib.load("model_heart_disease.pkl")
 
-# Dictionnaire pour les résultats
+# Dictionnaire pour interpréter le résultat
 dicotarget = {
     1: "Le patient n'est pas malade",
     2: "Le patient est malade"
 }
 
-# Route pour afficher le formulaire
 @app.route("/", methods=["GET", "POST"])
 def home():
     prediction = None
@@ -29,22 +27,17 @@ def home():
             sc = int(request.form["sc"])
             cpt = int(request.form["cpt"])
 
-            # Convertir en tableau numpy
-            Donnees = np.array([mv, eia, thal, oldpeak, sc, cpt]).reshape(1, -1)
+            # Créer un tableau NumPy
+            Donnees = np.array([[mv, eia, thal, oldpeak, sc, cpt]])
 
-            # Prédire avec le modèle
-            resultat = model.predict(Donnees)[0]
-
-            # Trouver le message correspondant
-            prediction = dicotarget[resultat]
+            # Faire une prédiction
+            prediction = dicotarget[model.predict(Donnees)[0]]
 
         except Exception as e:
-            prediction = "Erreur dans la saisie des données !"
+            prediction = "Erreur dans les données fournies."
 
     return render_template("index.html", prediction=prediction)
 
-# Lancer l'application Flask
 if __name__ == "__main__":
     app.run(debug=True)
-
 myapp = app 

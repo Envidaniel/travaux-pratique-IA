@@ -5,30 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prédiction Maladie Cardiaque</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    
+
 </head>
 <body>
-
     <div class="container">
         <h2>Prédiction Maladie Cardiaque</h2>
-
-        <form method="POST">
-            <input type="number" name="mv" placeholder="Nombre de vaisseaux majeurs" required>
-            <input type="number" name="eia" placeholder="Angine induite (1=Oui, 0=Non)" required>
-            <input type="number" name="thal" placeholder="Thalassémie" required>
-            <input type="number" step="0.1" name="oldpeak" placeholder="Oldpeak (ST dépression)" required>
-            <input type="number" name="sc" placeholder="Slope du segment ST" required>
-            <input type="number" name="cpt" placeholder="Type de douleur thoracique" required>
-            
-            <button type="submit">Prédire</button>
-        </form>
 
         {% if prediction %}
         <div class="result {% if 'pas malade' in prediction %} success {% else %} error {% endif %}">
             <strong>Résultat :</strong> {{ prediction }}
         </div>
         {% endif %}
-    </div>
 
+        <form method="POST">
+            <label>Nombre de vaisseaux majeurs :</label>
+            <input type="number" name="mv" required>
+
+            <label>Angine induite par l'exercice (1 = Oui, 0 = Non) :</label>
+            <input type="number" name="eia" required>
+
+            <label>Thalassemie :</label>
+            <input type="number" name="thal" required>
+
+            <label>Oldpeak (Dépression ST) :</label>
+            <input type="number" step="0.1" name="oldpeak" required>
+
+            <label>Slope du segment ST :</label>
+            <input type="number" name="sc" required>
+
+            <label>Type de douleur thoracique :</label>
+            <input type="number" name="cpt" required>
+
+            <button type="submit">Prédire</button>
+        </form>
+
+        
+    </div>
 </body>
 </html>
