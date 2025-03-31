@@ -1,0 +1,69 @@
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #cb8411, #2575fc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Carte principale */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+}
+
+/* Titres */
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Champs du formulaire */
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Bouton */
+button {
+    width: 100%;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Affichage du résultat */
+.result {
+    margin-top: 15px;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.error {
+    background: #f8d7da;
+    color: #721c24;
+}
